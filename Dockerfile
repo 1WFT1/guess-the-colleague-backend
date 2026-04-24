@@ -1,24 +1,16 @@
-FROM openjdk:21-jdk-slim
+FROM eclipse-temurin:21-jdk-alpine
 
 WORKDIR /app
 
-# Копируем файлы для сборки
-COPY .mvn .mvn
 COPY mvnw .
+COPY .mvn .mvn
 COPY pom.xml .
 
-# Делаем mvnw исполняемым
 RUN chmod +x mvnw
-
-# Скачиваем зависимости
 RUN ./mvnw dependency:go-offline -B
 
-# Копируем исходники
 COPY src src
-
-# Собираем JAR
 RUN ./mvnw package -DskipTests
 
-# Запускаем
 EXPOSE 8080
-CMD ["java", "-jar", "target/*.jar"]
+CMD ["java", "-jar", "-Dserver.port=${PORT:8080}", "target/*.jar"]
