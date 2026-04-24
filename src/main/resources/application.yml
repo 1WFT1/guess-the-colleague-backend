@@ -5,7 +5,7 @@ spring:
   datasource:
     url: ${DB_URL}
     username: ${DB_USER:admin}
-    password: ${DB_PASSWORD:}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
