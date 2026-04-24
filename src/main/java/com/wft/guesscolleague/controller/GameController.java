@@ -56,10 +56,14 @@ public class GameController {
             @RequestParam(required = false) String firstName,
             @RequestParam(required = false) String lastName,
             @RequestParam(required = false, defaultValue = "name") String gameMode) {
-
-        log.info("Creating session for user: {} with gameMode: {}", userId, gameMode);
-
-        // Регистрируем или обновляем пользователя в БД
+    
+        log.info("=== SESSION CREATION ===");
+        log.info("userId: {}", userId);
+        log.info("firstName: {}", firstName);
+        log.info("lastName: {}", lastName);
+        log.info("username: {}", username);
+        log.info("gameMode: {}", gameMode);
+        
         telegramUserService.registerOrUpdateUser(userId, username, firstName, lastName);
 
         UUID sessionId = gameService.createSession(userId, chatId, gameMode).getId();
