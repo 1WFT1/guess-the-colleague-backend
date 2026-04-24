@@ -18,5 +18,5 @@ RUN ./mvnw package -DskipTests
 # Указываем порт
 EXPOSE 8080
 
-# Запускаем приложение, передавая переменные окружения
-ENTRYPOINT ["java", "-jar", "-Dserver.port=${PORT}", "-DDB_HOST=${DB_HOST}", "-DDB_PORT=${DB_PORT}", "-DDB_NAME=${DB_NAME}", "-DDB_USER=${DB_USER}", "-DDB_PASSWORD=${DB_PASSWORD}", "target/guesscolleague-0.0.1-SNAPSHOT.jar"]
+# Запускаем приложение (переменные окружения будут подхвачены автоматически)
+ENTRYPOINT ["java", "-jar", "-Dserver.port=${PORT}", "target/guesscolleague-0.0.1-SNAPSHOT.jar"]
