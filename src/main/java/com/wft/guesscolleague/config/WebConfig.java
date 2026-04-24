@@ -9,13 +9,12 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins(
+        registry.addMapping("/**")  // Изменили с /api/** на /**
+                .allowedOriginPatterns(  // Используем allowedOriginPatterns
                     "http://localhost:5173",
                     "https://guess-the-colleague-frontend.vercel.app"
                 )
-                .allowedOriginPatterns("*")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)
                 .maxAge(3600);
