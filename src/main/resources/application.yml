@@ -3,9 +3,9 @@ spring:
     name: guesscolleague
 
   datasource:
-    url: jdbc:postgresql://dpg-d7llo4nlk1mc73bahkk0-a.frankfurt-postgres.render.com:5432/guess_colleague
-    username: admin
-    password: 4bPYQ68hKPGaBJfVrB7PoAuSGEbBTBDJ
+    url: ${DB_URL}
+    username: ${DB_USER:admin}
+    password: ${DB_PASSWORD:}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
@@ -26,14 +26,14 @@ spring:
 
 telegram:
   bot:
-    token: ${TELEGRAM_BOT_TOKEN:YOUR_BOT_TOKEN_HERE}
-    username: ${TELEGRAM_BOT_USERNAME:GuessColleagueBot}
+    token: ${TELEGRAM_BOT_TOKEN}
+    username: ${TELEGRAM_BOT_USERNAME}
 
 server:
   port: ${PORT:8080}
 
 logging:
   level:
-    com.wft.guesscolleague: DEBUG
+    com.wft.guesscolleague: ${LOG_LEVEL:DEBUG}
     org.springframework.web: INFO
     org.hibernate.SQL: DEBUG
