@@ -13,4 +13,4 @@ COPY src src
 RUN ./mvnw package -DskipTests
 
 EXPOSE 8080
-CMD ["java", "-jar", "-Dserver.port=${PORT:8080}", "target/*.jar"]
+CMD ["sh", "-c", "java -jar -Dserver.port=${PORT:8080} target/guesscolleague-*.jar"]
